@@ -42,6 +42,8 @@ class MyApp extends StatelessWidget {
             lazy: false,
           ),
         ],
+
+        //movimiento 
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
           home: const Scaffold(),
