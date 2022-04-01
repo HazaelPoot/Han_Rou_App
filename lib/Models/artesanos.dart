@@ -1,35 +1,41 @@
+import 'dart:convert';
+
+Artesanias artesaniaFromJson(String str) => Artesanias.fromJson(json.decode(str));
+String artesaniaToJson(Artesanias data) => json.encode(data.toJson());
+
 class Artesanias {
     Artesanias({
-        this.id,
+        this.idProducto,
+        this.codigo,
         this.nombre,
-        this.precio,
-        this.stock,
-        this.descripcion,
-        this.vendedor,
+        this.material,
+        required this.precio,
+        required this.stock,
     });
 
-    int? id;
+    int? idProducto;
+    String? codigo;
     String? nombre;
+    String? material;
     int? precio;
-    int? stock;
-    String? descripcion;
-    String? vendedor;
+    int stock;
 
     factory Artesanias.fromJson(Map<String, dynamic> json) => Artesanias(
-        id: json["id"],
-        nombre: json["Nombre"],
-        precio: json["Precio"],
-        stock: json["Stock"],
-        descripcion: json["Descripcion"],
-        vendedor: json["Vendedor"],
+        idProducto: json["idProducto"],
+        codigo: json["codigo"],
+        nombre: json["nombre"],
+        material: json["material"],
+        precio: json["precio"],
+        stock: json["stock"],
     );
 
     Map<String, dynamic> toJson() => {
-        "id": id,
-        "Nombre": nombre,
-        "Precio": precio,
-        "Stock": stock,
-        "Descripcion": descripcion,
-        "Vendedor": vendedor,
+        "idProducto": idProducto,
+        "codigo": codigo,
+        "nombre": nombre,
+        "material": material,
+        "precio": precio,
+        "stock": stock,
     };
 }
+

@@ -1,4 +1,7 @@
-//String responseToJson(Response data) => json.encode(data.toJson());
+import 'dart:convert';
+
+// Response responseFromJson(String str) => Response.fromJson(json.decode(str));
+// String responseToJson(Response data) => json.encode(data.toJson());
 
 class Response {
     Response({
@@ -9,7 +12,6 @@ class Response {
 
     int? exito;
     String? mensaje;
-    List<dynamic>? data;
+    dynamic data;
 
-    
 }

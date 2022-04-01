@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:han_rou_hazael/Models/gastronomia.dart';
+import 'package:han_rou_hazael/Models/Response.dart';
 import 'package:han_rou_hazael/Screens/Gastronomia_Screens/post_gastronomia.dart';
 import 'package:provider/provider.dart';
+import '../../Models/ListaResponse.dart';
 import '../../Providers/GastronomiaProviders.dart';
 
 class GastronomiaScreen extends StatelessWidget {
@@ -10,7 +11,7 @@ class GastronomiaScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final gastronomiaProvider = Provider.of<GastronomiaProvider>(context);
-    final List<Gastronomia> gastronomia = gastronomiaProvider.gastronomia;
+    final ListaResponse gastronomia = gastronomiaProvider.request;
 
     return Scaffold(
       //APP BAR
@@ -30,7 +31,7 @@ class GastronomiaScreen extends StatelessWidget {
           padding: const EdgeInsets.all(5),
           child: Column(
             children: <Widget>[
-              ...gastronomia.map(
+              ...?gastronomia.data?.map(
                 (gastronomia) =>
                     //CARDS
                     Center(
@@ -47,9 +48,9 @@ class GastronomiaScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         ListTile(
-                          leading: Icon(Icons.shopping_bag),
+                          leading: Icon(Icons.food_bank_rounded),
                           title: Text(
-                            '${gastronomia.nombreG}',
+                            '${gastronomia.nombre}',
                             style:
                                 TextStyle(fontSize: 20, fontFamily: 'Raleway'),
                           ),
@@ -80,9 +81,10 @@ class GastronomiaScreen extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Text('Precio: ${gastronomia.precio}'),
+                              Text('Direccion: ${gastronomia.direccion}'),
+                              Text('Contacto: ${gastronomia.contacto}'),
                               Text('Lugar de origen: ${gastronomia.origen}'),
                               Text('Vendedor: ${gastronomia.vendedor}'),
-                              Text('Direccion: ${gastronomia.direccion}')
                             ],
                           ),
                         ),

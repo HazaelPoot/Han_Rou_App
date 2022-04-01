@@ -1,35 +1,45 @@
+import 'dart:convert';
+
+Gastronomia gastronomiaFromJson(String str) => Gastronomia.fromJson(json.decode(str));
+String gastronomiaToJson(Gastronomia data) => json.encode(data.toJson());
+
 class Gastronomia {
-  Gastronomia({
-    this.id,
-    this.nombreG,
-    this.precio,
-    this.origen,
-    this.direccion,
-    this.vendedor,
-  });
+    Gastronomia({
+        this.idFood,
+        this.nombre,
+        this.precio,
+        this.origen,
+        this.direccion,
+        this.contacto,
+        this.vendedor,
+    });
 
-  int? id;
-  String? nombreG;
-  String? precio;
-  String? origen;
-  String? direccion;
-  String? vendedor;
+    int? idFood;
+    String? nombre;
+    String? precio;
+    String? origen;
+    String? direccion;
+    String? contacto;
+    String? vendedor;
 
-  factory Gastronomia.fromJson(Map<String, dynamic> json) => Gastronomia(
-        id: json["id"],
-        nombreG: json["nombre_g"],
-        precio: json["Precio"],
-        origen: json["Origen"],
-        direccion: json["Direccion"],
-        vendedor: json["Vendedor"],
-      );
+    factory Gastronomia.fromJson(Map<String, dynamic> json) => Gastronomia(
+        idFood: json["idFood"],
+        nombre: json["nombre"],
+        precio: json["precio"],
+        origen: json["origen"],
+        direccion: json["direccion"],
+        contacto: json["contacto"],
+        vendedor: json["vendedor"],
+    );
 
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "nombre_g": nombreG,
-        "Precio": precio,
-        "Origen": origen,
-        "Direccion": direccion,
-        "Vendedor": vendedor,
-      };
+    Map<String, dynamic> toJson() => {
+        "idFood": idFood,
+        "nombre": nombre,
+        "precio": precio,
+        "origen": origen,
+        "direccion": direccion,
+        "contacto": contacto,
+        "vendedor": vendedor,
+    };
 }
+

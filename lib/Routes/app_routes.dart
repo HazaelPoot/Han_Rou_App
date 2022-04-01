@@ -9,7 +9,7 @@ class AppRoutes {
     ItemMenu(
       label: 'Agregar Artesanias', 
       route: 'addartesanias', icon: Icons.add, 
-      screen: const AddArtesaniasScreen()),
+      screen: AddArtesaniasScreen()),
     ItemMenu(
       label: 'Home HanRou', 
       route: 'indexHanRou', icon: Icons.home_filled, 

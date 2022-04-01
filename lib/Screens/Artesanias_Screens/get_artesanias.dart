@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:han_rou_hazael/Models/artesanos.dart';
 import 'package:han_rou_hazael/Screens/Artesanias_Screens/post_artesanias.dart';
 import 'package:provider/provider.dart';
+import '../../Models/ListaResponse.dart';
 import '../../Providers/ArtesaniasProviders.dart';
 
 class ArtesaniasScreen extends StatelessWidget {
@@ -10,7 +10,7 @@ class ArtesaniasScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final artesaniaProvider = Provider.of<ArtesaniasProvider>(context);
-    final List<Artesanias> artesania = artesaniaProvider.artesania;
+    final ListaResponse artesania = artesaniaProvider.request;
 
     return Scaffold(
       //APP BAR
@@ -30,7 +30,7 @@ class ArtesaniasScreen extends StatelessWidget {
           padding: const EdgeInsets.all(13),
           child: Column(
             children: <Widget>[
-              ...artesania.map(
+              ...?artesania.data?.map(
                 (artesania) =>
                     //CARDS
                     Center(
@@ -79,10 +79,10 @@ class ArtesaniasScreen extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
+                              Text('Precio: ${artesania.precio}',),
                               Text('Stock: ${artesania.stock}'),
-                              Text('Precio: ${artesania.precio}'),
-                              Text('Vendedor: ${artesania.vendedor}'),
-                              Text('Descripción: ${artesania.descripcion}')
+                              Text('Material: ${artesania.material}'),
+                              Text('Código: ${artesania.codigo}')
                             ],
                           ),
                         ),
@@ -157,7 +157,7 @@ class ArtesaniasScreen extends StatelessWidget {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => const AddArtesaniasScreen()));
+                    builder: (context) => AddArtesaniasScreen()));
           },
           backgroundColor: Colors.blue,
         ),
