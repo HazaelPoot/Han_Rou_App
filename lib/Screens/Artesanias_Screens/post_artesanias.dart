@@ -15,7 +15,7 @@ class AddArtesaniasScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final artesaniaProvider = Provider.of<ArtesaniasProvider>(context);
     final ListaResponse artesania = artesaniaProvider.request;
-    final Artesanias _artesania = Artesanias(precio: 0, stock: 0);
+    final Artesanias _artesania = Artesanias(precio: 0, stock: 0, idProducto: 1);
 
     return Scaffold(
         appBar: AppBar(
@@ -46,6 +46,34 @@ class AddArtesaniasScreen extends StatelessWidget {
                     ),
                   ),
                 ),
+                //ID DEL PRODUCTO
+                Padding(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 17.0, vertical: 5.0),
+                    child: TextFormField(
+                      initialValue: _artesania.idProducto.toString(),
+                      maxLines: 1,
+                      keyboardType: TextInputType.number,
+                      onChanged: (value) => _artesania.idProducto == int.parse(value),
+                      validator: (value) {
+                      if (value!.isEmpty) {
+                        return ("Este campo es obligatorio");
+                      }
+                      final n = num.tryParse(value);
+                      if (n == 0 || n == null) {
+                        return 'El Precio tiene que ser mayor a cero';
+                      }
+                      if (n <= 1) {
+                        return 'El Precio debe ser mayor a cero';
+                      }
+                      return null;
+                    },
+                      decoration: const InputDecoration(
+                        icon: Icon(Icons.numbers_rounded, color: Colors.blueAccent),
+                        filled: true,
+                        labelText: 'Id de la Artesania',
+                      ),
+                    )),
                 //NOMBRE DEL PRODUCTO
                 Padding(
                   padding:

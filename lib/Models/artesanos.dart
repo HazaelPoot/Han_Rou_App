@@ -5,7 +5,7 @@ String artesaniaToJson(Artesanias data) => json.encode(data.toJson());
 
 class Artesanias {
     Artesanias({
-        this.idProducto,
+        required this.idProducto,
         this.codigo,
         this.nombre,
         this.material,
@@ -13,11 +13,11 @@ class Artesanias {
         required this.stock,
     });
 
-    int? idProducto;
+    int idProducto;
     String? codigo;
     String? nombre;
     String? material;
-    int? precio;
+    int precio;
     int stock;
 
     factory Artesanias.fromJson(Map<String, dynamic> json) => Artesanias(
